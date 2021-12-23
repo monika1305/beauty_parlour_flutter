@@ -25,7 +25,7 @@ class _GoogleButtonState extends State<GoogleButton> {
         style: OutlinedButton.styleFrom(
           primary: Colors.blueGrey.shade100,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             side: BorderSide(color: Colors.blueGrey, width: 3),
           ),
           elevation: 0,
@@ -65,7 +65,7 @@ class _GoogleButtonState extends State<GoogleButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image(
-                image: AssetImage("assets/images/google_logo.png"),
+                image: AssetImage("assets/images/google_logo.jpg"),
                 height: 30.0,
               ),
               Padding(

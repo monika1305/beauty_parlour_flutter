@@ -16,8 +16,19 @@ String? imageUrl;
 /// For checking if the user is already signed into the
 /// app using Google Sign In
 Future getUser() async {
-  await Firebase.initializeApp();
-
+  //await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: FirebaseOptions(
+        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+        authDomain: "beauty-parlor-335410.firebaseapp.com",
+        projectId: "beauty-parlor-335410",
+        storageBucket: "beauty-parlor-335410.appspot.com",
+        messagingSenderId: "809495811354",
+        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+        measurementId: "G-DETW32B72M"
+    ),
+  );
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool authSignedIn = prefs.getBool('auth') ?? false;
 
@@ -39,10 +50,21 @@ Future getUser() async {
 /// Retrieves some general user related information
 /// from their Google account for ease of the login process
 Future<User?> signInWithGoogle() async {
-  await Firebase.initializeApp();
-
+  //await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: FirebaseOptions(
+        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+        authDomain: "beauty-parlor-335410.firebaseapp.com",
+        projectId: "beauty-parlor-335410",
+        storageBucket: "beauty-parlor-335410.appspot.com",
+        messagingSenderId: "809495811354",
+        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+        measurementId: "G-DETW32B72M"
+    ),
+  );
   User? user;
-
+print("signInWithGoogle ${kIsWeb}");
   if (kIsWeb) {
     GoogleAuthProvider authProvider = GoogleAuthProvider();
 
@@ -100,9 +122,20 @@ Future<User?> signInWithGoogle() async {
 }
 
 Future<User?> registerWithEmailPassword(String email, String password) async {
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: FirebaseOptions(
+        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+        authDomain: "beauty-parlor-335410.firebaseapp.com",
+        projectId: "beauty-parlor-335410",
+        storageBucket: "beauty-parlor-335410.appspot.com",
+        messagingSenderId: "809495811354",
+        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+        measurementId: "G-DETW32B72M"
+    ),
+  );
   User? user;
-
   try {
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -111,6 +144,7 @@ Future<User?> registerWithEmailPassword(String email, String password) async {
 
     user = userCredential.user;
 
+    print("registerWithEmailPassword ${userCredential.user}");
     if (user != null) {
       uid = user.uid;
       userEmail = user.email;
@@ -129,7 +163,19 @@ Future<User?> registerWithEmailPassword(String email, String password) async {
 }
 
 Future<User?> signInWithEmailPassword(String email, String password) async {
-  await Firebase.initializeApp();
+ // await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: FirebaseOptions(
+        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+        authDomain: "beauty-parlor-335410.firebaseapp.com",
+        projectId: "beauty-parlor-335410",
+        storageBucket: "beauty-parlor-335410.appspot.com",
+        messagingSenderId: "809495811354",
+        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+        measurementId: "G-DETW32B72M"
+    ),
+  );
   User? user;
 
   try {
@@ -139,6 +185,7 @@ Future<User?> signInWithEmailPassword(String email, String password) async {
     );
     user = userCredential.user;
 
+    print("signInWithEmailPassword ${userCredential.user}");
     if (user != null) {
       uid = user.uid;
       userEmail = user.email;
@@ -162,7 +209,7 @@ Future<String> signOut() async {
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setBool('auth', false);
-
+  print("signOut ");
   uid = null;
   userEmail = null;
 
@@ -173,7 +220,7 @@ Future<String> signOut() async {
 void signOutGoogle() async {
   await googleSignIn.signOut();
   await _auth.signOut();
-
+  print("signOutGoogle ");
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setBool('auth', false);
 

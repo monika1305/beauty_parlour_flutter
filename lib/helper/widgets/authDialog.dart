@@ -29,6 +29,7 @@ class _AuthDialogState extends State<AuthDialog> {
   String? _validateEmail(String value) {
     value = value.trim();
 
+    print("_validateEmail ");
     if (textControllerEmail.text.isNotEmpty) {
       if (value.isEmpty) {
         return 'Email can\'t be empty';
