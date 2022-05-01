@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../responsiveWidget.dart';
+import '../helper/responsiveWidget.dart';
 
 class DestinationCarousel extends StatefulWidget {
   @override
@@ -9,6 +9,7 @@ class DestinationCarousel extends StatefulWidget {
 }
 
 class _DestinationCarouselState extends State<DestinationCarousel> {
+
   final String imagePath = 'assets/images/';
 
   final CarouselController _controller = CarouselController();

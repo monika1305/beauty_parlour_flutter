@@ -17,6 +17,7 @@ String? imageUrl;
 /// app using Google Sign In
 Future getUser() async {
   //await Firebase.initializeApp();
+
   await Firebase.initializeApp(
     // Replace with actual values
     options: FirebaseOptions(
@@ -29,6 +30,8 @@ Future getUser() async {
         measurementId: "G-DETW32B72M"
     ),
   );
+
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool authSignedIn = prefs.getBool('auth') ?? false;
 
@@ -50,31 +53,35 @@ Future getUser() async {
 /// Retrieves some general user related information
 /// from their Google account for ease of the login process
 Future<User?> signInWithGoogle() async {
-  //await Firebase.initializeApp();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: FirebaseOptions(
-        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
-        authDomain: "beauty-parlor-335410.firebaseapp.com",
-        projectId: "beauty-parlor-335410",
-        storageBucket: "beauty-parlor-335410.appspot.com",
-        messagingSenderId: "809495811354",
-        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
-        measurementId: "G-DETW32B72M"
-    ),
-  );
+  await Firebase.initializeApp();
+  // await Firebase.initializeApp(
+  //   // Replace with actual values
+  //   options: FirebaseOptions(
+  //       apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+  //       authDomain: "beauty-parlor-335410.firebaseapp.com",
+  //       projectId: "beauty-parlor-335410",
+  //       storageBucket: "beauty-parlor-335410.appspot.com",
+  //       messagingSenderId: "809495811354",
+  //       appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+  //       measurementId: "G-DETW32B72M"
+  //   ),
+  // );
   User? user;
 print("signInWithGoogle ${kIsWeb}");
   if (kIsWeb) {
     GoogleAuthProvider authProvider = GoogleAuthProvider();
 
+    // authProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    // authProvider.setCustomParameters({
+    //   'login_hint': 'user@example.com'
+    // });
     try {
       final UserCredential userCredential =
       await _auth.signInWithPopup(authProvider);
 
       user = userCredential.user;
     } catch (e) {
-      print(e);
+      print('signInWithGoogle error ${e}');
     }
   } else {
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -120,23 +127,25 @@ print("signInWithGoogle ${kIsWeb}");
 
   return user;
 }
-
+// handle the whole process of registering a new user
 Future<User?> registerWithEmailPassword(String email, String password) async {
-  //await Firebase.initializeApp();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: FirebaseOptions(
-        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
-        authDomain: "beauty-parlor-335410.firebaseapp.com",
-        projectId: "beauty-parlor-335410",
-        storageBucket: "beauty-parlor-335410.appspot.com",
-        messagingSenderId: "809495811354",
-        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
-        measurementId: "G-DETW32B72M"
-    ),
-  );
+  await Firebase.initializeApp();
+  // await Firebase.initializeApp(
+  //   // Replace with actual values
+  //   options: FirebaseOptions(
+  //       apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+  //       authDomain: "beauty-parlor-335410.firebaseapp.com",
+  //       projectId: "beauty-parlor-335410",
+  //       storageBucket: "beauty-parlor-335410.appspot.com",
+  //       messagingSenderId: "809495811354",
+  //       appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+  //       measurementId: "G-DETW32B72M"
+  //   ),
+  // );
   User? user;
   try {
+    // To register a new user,
+    // you can use the method createUserWithEmailAndPassword provided by FirebaseAuth.
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
@@ -161,21 +170,21 @@ Future<User?> registerWithEmailPassword(String email, String password) async {
 
   return user;
 }
-
+// FirebaseAuth to authenticate the login process.
 Future<User?> signInWithEmailPassword(String email, String password) async {
- // await Firebase.initializeApp();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: FirebaseOptions(
-        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
-        authDomain: "beauty-parlor-335410.firebaseapp.com",
-        projectId: "beauty-parlor-335410",
-        storageBucket: "beauty-parlor-335410.appspot.com",
-        messagingSenderId: "809495811354",
-        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
-        measurementId: "G-DETW32B72M"
-    ),
-  );
+ await Firebase.initializeApp();
+ //  await Firebase.initializeApp(
+ //    // Replace with actual values
+ //    options: FirebaseOptions(
+ //        apiKey: "AIzaSyA3dZoOp51MM3LA41413LlgOEbyq9gphJ0",
+ //        authDomain: "beauty-parlor-335410.firebaseapp.com",
+ //        projectId: "beauty-parlor-335410",
+ //        storageBucket: "beauty-parlor-335410.appspot.com",
+ //        messagingSenderId: "809495811354",
+ //        appId: "1:809495811354:web:5966e83613b56e0aacc8a3",
+ //        measurementId: "G-DETW32B72M"
+ //    ),
+ //  );
   User? user;
 
   try {

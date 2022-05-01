@@ -69,7 +69,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                 height: 30.0,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   'Continue with Google',
                   style: TextStyle(

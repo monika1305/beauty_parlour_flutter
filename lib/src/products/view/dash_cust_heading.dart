@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../responsiveWidget.dart';
+import '../../../helper/responsiveWidget.dart';
 
 class FeaturedHeading extends StatelessWidget {
   const FeaturedHeading({
@@ -28,7 +28,7 @@ class FeaturedHeading extends StatelessWidget {
               children: [
                 Row(),
                 Text(
-                  'Products & Brand',
+                  'Customers Reviews',
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'Montserrat',
@@ -57,7 +57,7 @@ class FeaturedHeading extends StatelessWidget {
                   },
                   onTap: () {},
                   child: Text(
-                    'Products & Brands',
+                    'Customers Reviews',
                     style: TextStyle(
                       fontSize: 40,
                       fontFamily: 'Montserrat',

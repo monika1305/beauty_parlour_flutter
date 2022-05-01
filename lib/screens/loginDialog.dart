@@ -3,10 +3,10 @@ import 'package:beauty_parlor/screens/home_page.dart';
 import 'package:beauty_parlor/utils/authentication.dart';
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-import 'google_sign_in_button.dart';
+import '../main.dart';
+import '../helper/widgets/google_sign_in_button.dart';
 
-class AuthDialog extends StatefulWidget {
+class  AuthDialog extends StatefulWidget {
   @override
   _AuthDialogState createState() => _AuthDialogState();
 }
@@ -86,7 +86,7 @@ class _AuthDialogState extends State<AuthDialog> {
               children: [
                 Center(
                   child: Text(
-                    'EXPLORE',
+                    'SALON',
                     style: TextStyle(
                       color: Theme.of(context).textTheme.headline1!.color,
                       fontSize: 24,
@@ -338,7 +338,7 @@ class _AuthDialogState extends State<AuthDialog> {
                             onPressed: () async {
                               setState(() {
                                 _isRegistering = true;
-                              });
+                              }); // handle the whole process of registering a new user
                               await registerWithEmailPassword(
                                   textControllerEmail.text,
                                   textControllerPassword.text)

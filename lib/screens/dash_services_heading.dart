@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../responsiveWidget.dart';
+import '../helper/responsiveWidget.dart';
 
 class DestinationHeading extends StatelessWidget {
   const DestinationHeading({

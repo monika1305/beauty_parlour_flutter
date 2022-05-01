@@ -1,11 +1,11 @@
-import 'package:beauty_parlor/screens/booking_page.dart';
-import 'package:beauty_parlor/screens/contactus_page.dart';
+import 'package:beauty_parlor/src/booking/view/booking_page.dart';
+import 'package:beauty_parlor/screens/dashboard_page.dart';
 import 'package:beauty_parlor/screens/home_page.dart';
 import 'package:beauty_parlor/utils/authentication.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'authDialog.dart';
+import '../../screens/loginDialog.dart';
 
 class TopBarContents extends StatefulWidget {
   final double opacity;
@@ -17,8 +17,6 @@ class TopBarContents extends StatefulWidget {
 }
 
 class _TopBarContentsState extends State<TopBarContents> {
-  // The inital group value
-  String _selectedGender = 'male';
 
 
   final List _isHovering = [
@@ -92,7 +90,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                             'Book now',
                             style: TextStyle(
                               color: _isHovering[0]
-                                  ? Colors.blue[200]
+                                  ? Colors.blue
                                   : Colors.white,
                             ),
 
@@ -123,11 +121,11 @@ class _TopBarContentsState extends State<TopBarContents> {
                       },
                       onTap: () {
 
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => ContactusPage(),
-
-                        );
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (ctx) => ContactusPage(),
+                        //
+                        // );
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -136,7 +134,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                             'Contact Us',
                             style: TextStyle(
                               color: _isHovering[1]
-                                  ? Colors.blue[200]
+                                  ? Colors.blue
                                   : Colors.white,
                             ),
                           ),
@@ -188,30 +186,82 @@ class _TopBarContentsState extends State<TopBarContents> {
                     ? Text(
                   'Sign in',
                   style: TextStyle(
-                    color: _isHovering[3] ? Colors.white : Colors.white70,
+                    color: _isHovering[3]
+                        ? Colors.blue
+                        : Colors.white,
+                    fontWeight: FontWeight.w800
                   ),
                 )
                     : Row(
                   children: [
+
+                    InkWell(
+                      onHover: (value) {
+                        setState(() {
+                          value
+                              ? _isHovering[4] = true
+                              : _isHovering[4] = false;
+                        });
+                      },
+                      onTap: () {
+                        // Navigator.of(context).pushReplacement(
+                        //     MaterialPageRoute(
+                        //     fullscreenDialog: true,
+                        //     builder: (context) => DashboardPage(),
+                        //     ),
+                        // );
+                        Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => DashboardPage(),
+                            ),
+                        );
+
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+
+                          Text(/*name  == null ? '' : */'Dashboard',
+                            style: TextStyle(
+                              color: _isHovering[4]
+                                  ? Colors.blue
+                                  : Colors.white,
+                                fontWeight: FontWeight.w800
+                            ),
+
+                          ),
+                          Visibility(
+                            maintainAnimation: true,
+                            maintainState: true,
+                            maintainSize: true,
+                            visible: _isHovering[0],
+                            child: Container(
+                              height: 2,
+                              width: 20,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 10),
                     CircleAvatar(
                       radius: 15,
-                      backgroundImage: imageUrl != null
-                          ? NetworkImage(imageUrl!)
-                          : null,
-                      child: imageUrl == null
-                          ? Icon(
+                      child: imageUrl != null
+                          ? Image.network(imageUrl!)
+                          : Icon(
                         Icons.account_circle,
                         size: 30,
-                      )
-                          : Container(),
+                      ),
                     ),
                     SizedBox(width: 5),
                     Text(
                       name ?? userEmail!,
                       style: TextStyle(
                         color: _isHovering[3]
-                            ? Colors.white
-                            : Colors.white70,
+                            ? Colors.blue
+                            : Colors.white,
+                          fontWeight: FontWeight.w800
                       ),
                     ),
                     SizedBox(width: 10),
@@ -253,8 +303,10 @@ class _TopBarContentsState extends State<TopBarContents> {
                             : Text(
                           'Sign out',
                           style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
+                            fontSize: 15,
+                            color: _isHovering[3]
+                                ? Colors.blue
+                                : Colors.white,
                           ),
                         ),
                       ),

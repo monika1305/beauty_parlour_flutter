@@ -2,7 +2,7 @@ import 'package:beauty_parlor/screens/home_page.dart';
 import 'package:beauty_parlor/utils/authentication.dart';
 import 'package:flutter/material.dart';
 
-import 'authDialog.dart';
+import 'loginDialog.dart';
 
 class ExploreDrawer extends StatefulWidget {
   const ExploreDrawer({
